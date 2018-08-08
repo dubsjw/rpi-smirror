@@ -55,7 +55,7 @@ class Weather(QObject):
 
 
     def updateWeather(self):
-        response = requests.get("http://api.openweathermap.org/data/2.5/weather?id=4996248&appid=371e94d08311d3945725e693cdd483a4")
+        response = requests.get("http://api.openweathermap.org/data/2.5/weather?id=4996248&appid=apikey")
         
         if response.status_code is not 401:
             weatherData = response.json()
