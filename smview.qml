@@ -1,6 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 1.4
-import Weather 1.0
+import "smartwidgets" 
 
 ApplicationWindow
 {
@@ -12,7 +12,7 @@ ApplicationWindow
     Rectangle
     {
         id: backgroundRect
-        color: "black"
+        color: "grey"
         anchors.fill: parent
     }
     
@@ -27,6 +27,10 @@ ApplicationWindow
     Weather
     {
         id: weather
+        anchors.left: parent.left
+        anchors.top: parent.top
+        anchors.margins: 10
     }
 
+   
 }
