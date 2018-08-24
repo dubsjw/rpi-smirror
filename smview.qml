@@ -8,14 +8,14 @@ ApplicationWindow
     visible: true
     height: 500
     width: 500
-    
+
     Rectangle
     {
         id: backgroundRect
         color: "grey"
         anchors.fill: parent
     }
-    
+
     Text
     {
         id: betaText
@@ -31,6 +31,4 @@ ApplicationWindow
         anchors.top: parent.top
         anchors.margins: 10
     }
-
-   
 }

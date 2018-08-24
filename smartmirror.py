@@ -79,17 +79,32 @@ class weather_engine(QObject):
     def kelvin_to_fahrenheit(self, kelvin):
         return round((9/5 * (kelvin - 273) + 32), 1)
 
+    def parse_icon_url(self, json):
+        iconCode = json['weather'][0]['icon']
+        self._iconUrl = 'http://openweathermap.org/img/w/' + iconCode + '.png'
+        self.icon_url_changed.emit()
+
+    def parse_temperature(self, json):
+        self._tempKelvin = json['main']['temp']
+        self.temperature_changed.emit()
+
     def updateWeather(self):
         response = requests.get("http://api.openweathermap.org/data/2.5/weather?id=4996248&appid=371e94d08311d3945725e693cdd483a4")
         if response.status_code is not 401:
             weatherData = response.json()
-            self._tempKelvin = weatherData['main']['temp']
-            iconCode = weatherData['weather'][0]['icon']
-            self._iconUrl = 'http://openweathermap.org/img/w/' + iconCode + '.png'
-            self.temperature_changed.emit()
+            self.parse_temperature(weatherData)
+            self.parse_icon_url(weatherData)
             self.timer.start()
 
-            #self.iconUrlChanged.emit()
+class timeengine(QObject):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+
+    def get_time(self):
+        pass
+
+    def update_time(self):
+        pass
 
 if __name__ == '__main__':
     try:
